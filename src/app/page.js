@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
@@ -8,7 +8,7 @@ import MarkdownEditor from '@/components/MarkdownEditor';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './page.module.css';
 
-export default function Home() {
+function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [currentFile, setCurrentFile] = useState(null);
@@ -215,5 +215,23 @@ export default function Home() {
         </p>
       </motion.div>
     </div>
+  );
+}
+
+// Composant principal avec Suspense boundary
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingContent}>
+          <div className={styles.spinner}></div>
+          <p className={styles.loadingText}>
+            Chargement de l'application...
+          </p>
+        </div>
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   );
 }

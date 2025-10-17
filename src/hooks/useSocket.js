@@ -6,16 +6,17 @@ export function useSocket() {
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    // Initialiser la connexion Socket.io
+    // URL du serveur Socket.io selon l'environnement
     const socketUrl = process.env.NODE_ENV === 'production' 
-      ? process.env.NEXT_PUBLIC_SOCKET_URL || window.location.origin
+      ? window.location.origin 
       : 'http://localhost:3001';
-
-    socketRef.current = io(socketUrl, {
+    
+    // Créer la connexion Socket.io
+    const newSocket = io(socketUrl, {
       transports: ['websocket', 'polling']
     });
 
-    socketRef.current.on('connect', () => {
+    newSocket.on('connect', () => {
       console.log('Connected to Socket.io server');
       setIsConnected(true);
     });
