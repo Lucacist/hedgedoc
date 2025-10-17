@@ -1,0 +1,19 @@
+{
+  "functions": {
+    "server.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/socket.io/(.*)",
+      "destination": "/api/socket"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "NEXTAUTH_SECRET": "@nextauth_secret",
+    "NEXTAUTH_URL": "@nextauth_url",
+    "SOCKET_PORT": "3001"
+  }
+}

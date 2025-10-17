@@ -1,38 +1,595 @@
+/* Variables CSS pour le thème iOS */
 :root {
+  /* Couleurs principales */
+  --ios-blue: #007AFF;
+  --ios-blue-hover: #0056CC;
+  
+  /* Grays clairs */
+  --ios-gray-50: #F2F2F7;
+  --ios-gray-100: #E5E5EA;
+  --ios-gray-200: #D1D1D6;
+  --ios-gray-300: #C7C7CC;
+  --ios-gray-400: #AEAEB2;
+  --ios-gray-500: #8E8E93;
+  --ios-gray-600: #636366;
+  --ios-gray-700: #48484A;
+  --ios-gray-800: #3A3A3C;
+  --ios-gray-900: #1C1C1E;
+  
+  /* Couleurs de fond */
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Rayons de bordure iOS */
+  --ios-radius: 12px;
+  --ios-radius-lg: 16px;
+  
+  /* Ombres iOS */
+  --ios-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  --ios-shadow-dark: 0 4px 30px rgba(0, 0, 0, 0.3);
+  
+  /* Backdrop blur */
+  --ios-blur: blur(20px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Mode sombre */
+[data-theme="dark"], .dark {
+  --background: var(--ios-gray-900);
+  --foreground: #ededed;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+/* Reset et base */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--foreground);
+  background: var(--background);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Classes utilitaires */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem;
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+}
+
+.rounded {
+  border-radius: 0.375rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.rounded-ios {
+  border-radius: var(--ios-radius);
+}
+
+.rounded-ios-lg {
+  border-radius: var(--ios-radius-lg);
+}
+
+.shadow-ios {
+  box-shadow: var(--ios-shadow);
+}
+
+.dark .shadow-ios {
+  box-shadow: var(--ios-shadow-dark);
+}
+
+.backdrop-blur {
+  backdrop-filter: var(--ios-blur);
+  -webkit-backdrop-filter: var(--ios-blur);
+}
+
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-colors {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Couleurs de texte */
+.text-ios-blue {
+  color: var(--ios-blue);
+}
+
+.text-ios-gray-900 {
+  color: var(--ios-gray-900);
+}
+
+.dark .text-ios-gray-900 {
+  color: white;
+}
+
+.text-ios-gray-700 {
+  color: var(--ios-gray-700);
+}
+
+.dark .text-ios-gray-700 {
+  color: var(--ios-gray-300);
+}
+
+.text-ios-gray-600 {
+  color: var(--ios-gray-600);
+}
+
+.dark .text-ios-gray-600 {
+  color: var(--ios-gray-400);
+}
+
+.text-ios-gray-500 {
+  color: var(--ios-gray-500);
+}
+
+.text-ios-gray-400 {
+  color: var(--ios-gray-400);
+}
+
+.dark .text-ios-gray-400 {
+  color: var(--ios-gray-600);
+}
+
+.text-white {
+  color: white;
+}
+
+.text-green-500 {
+  color: #10B981;
+}
+
+/* Couleurs de fond */
+.bg-white {
+  background-color: white;
+}
+
+.dark .bg-white {
+  background-color: var(--ios-gray-900);
+}
+
+.bg-ios-gray-50 {
+  background-color: var(--ios-gray-50);
+}
+
+.dark .bg-ios-gray-50 {
+  background-color: var(--ios-gray-800);
+}
+
+.bg-ios-gray-100 {
+  background-color: var(--ios-gray-100);
+}
+
+.dark .bg-ios-gray-100 {
+  background-color: var(--ios-gray-800);
+}
+
+.bg-ios-gray-800 {
+  background-color: var(--ios-gray-800);
+}
+
+.bg-ios-gray-900 {
+  background-color: var(--ios-gray-900);
+}
+
+.bg-ios-blue {
+  background-color: var(--ios-blue);
+}
+
+.bg-ios-blue:hover {
+  background-color: var(--ios-blue-hover);
+}
+
+.bg-white-80 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dark .bg-white-80 {
+  background-color: rgba(28, 28, 30, 0.8);
+}
+
+/* Bordures */
+.border {
+  border-width: 1px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.border-r {
+  border-right-width: 1px;
+}
+
+.border-ios-gray-200 {
+  border-color: var(--ios-gray-200);
+}
+
+.dark .border-ios-gray-200 {
+  border-color: var(--ios-gray-700);
+}
+
+.border-ios-gray-700 {
+  border-color: var(--ios-gray-700);
+}
+
+/* Padding et margin */
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+/* Positionnement */
+.sticky {
+  position: sticky;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.bottom-6 {
+  bottom: 1.5rem;
+}
+
+.right-6 {
+  right: 1.5rem;
+}
+
+.left-6 {
+  left: 1.5rem;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+/* Flexbox */
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+/* Overflow */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+/* Styles pour l'éditeur Markdown */
+.prose-ios {
+  color: var(--ios-gray-700);
+  line-height: 1.7;
+}
+
+.dark .prose-ios {
+  color: var(--ios-gray-300);
+}
+
+.prose-ios h1,
+.prose-ios h2,
+.prose-ios h3,
+.prose-ios h4,
+.prose-ios h5,
+.prose-ios h6 {
+  color: var(--ios-gray-900);
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.dark .prose-ios h1,
+.dark .prose-ios h2,
+.dark .prose-ios h3,
+.dark .prose-ios h4,
+.dark .prose-ios h5,
+.dark .prose-ios h6 {
+  color: white;
+}
+
+.prose-ios h1 {
+  font-size: 1.875rem;
+  margin-top: 2rem;
+}
+
+.prose-ios h2 {
+  font-size: 1.5rem;
+}
+
+.prose-ios h3 {
+  font-size: 1.25rem;
+}
+
+.prose-ios a {
+  color: var(--ios-blue);
+  transition: color 0.2s ease;
+}
+
+.prose-ios a:hover {
+  color: var(--ios-blue-hover);
+}
+
+.prose-ios code {
+  background-color: var(--ios-gray-100);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.dark .prose-ios code {
+  background-color: var(--ios-gray-800);
+}
+
+.prose-ios pre {
+  background-color: var(--ios-gray-100);
+  border-radius: var(--ios-radius);
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.dark .prose-ios pre {
+  background-color: var(--ios-gray-800);
+}
+
+.prose-ios p {
+  margin-bottom: 1rem;
+}
+
+.prose-ios ul,
+.prose-ios ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.prose-ios li {
+  margin-bottom: 0.25rem;
+}
+
+.prose-ios blockquote {
+  border-left: 4px solid var(--ios-blue);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--ios-gray-600);
+  margin: 1rem 0;
+}
+
+.dark .prose-ios blockquote {
+  color: var(--ios-gray-400);
+}
+
+.prose-ios table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  border: 1px solid var(--ios-gray-200);
+  border-radius: var(--ios-radius);
+  overflow: hidden;
+}
+
+.dark .prose-ios table {
+  border-color: var(--ios-gray-700);
+}
+
+.prose-ios th,
+.prose-ios td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--ios-gray-200);
+}
+
+.dark .prose-ios th,
+.dark .prose-ios td {
+  border-color: var(--ios-gray-700);
+}
+
+.prose-ios th {
+  background-color: var(--ios-gray-100);
+  font-weight: 600;
+}
+
+.dark .prose-ios th {
+  background-color: var(--ios-gray-800);
+}
+
+/* Scrollbar personnalisé */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--ios-gray-100);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: var(--ios-gray-800);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--ios-gray-300);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: var(--ios-gray-600);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ios-gray-400);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ios-gray-500);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(10px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .space-x-4 > * + * {
+    margin-left: 0.5rem;
+  }
+  
+  .prose-ios h1 {
+    font-size: 1.5rem;
+  }
+  
+  .prose-ios h2 {
+    font-size: 1.25rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,0 +1,249 @@
+/* Header Component Styles */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: var(--ios-blur);
+  -webkit-backdrop-filter: var(--ios-blur);
+  border-bottom: 1px solid var(--ios-gray-200);
+  transition: all 0.3s ease;
+}
+
+.dark .header {
+  background-color: rgba(28, 28, 30, 0.8);
+  border-bottom-color: var(--ios-gray-700);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo:active {
+  transform: scale(0.95);
+}
+
+.logoIcon {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--ios-blue), #0056CC);
+  border-radius: var(--ios-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.logoText {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  font-weight: 600;
+  color: var(--ios-gray-900);
+}
+
+.dark .logoText {
+  color: white;
+}
+
+.titleContainer {
+  flex: 1;
+  max-width: 24rem;
+}
+
+.titleInput {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--ios-gray-50);
+  border: 1px solid var(--ios-gray-200);
+  border-radius: var(--ios-radius);
+  color: var(--ios-gray-900);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.dark .titleInput {
+  background-color: var(--ios-gray-800);
+  border-color: var(--ios-gray-700);
+  color: white;
+}
+
+.titleInput::placeholder {
+  color: var(--ios-gray-500);
+}
+
+.titleInput:focus {
+  ring: 2px solid var(--ios-blue);
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--ios-blue);
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statusIcon {
+  width: 1rem;
+  height: 1rem;
+  transition: all 0.3s ease;
+}
+
+.statusIcon.saved {
+  color: #10B981;
+}
+
+.statusIcon.saving {
+  color: var(--ios-blue);
+  animation: pulse 1s infinite;
+}
+
+.statusIcon.error {
+  color: #EF4444;
+}
+
+.statusText {
+  font-size: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.statusText.saved {
+  color: #10B981;
+}
+
+.statusText.saving {
+  color: var(--ios-blue);
+}
+
+.statusText.error {
+  color: #EF4444;
+}
+
+.usersContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.usersIcon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--ios-gray-500);
+}
+
+.usersCount {
+  font-size: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  color: var(--ios-gray-500);
+}
+
+.themeToggle {
+  padding: 0.5rem;
+  border-radius: var(--ios-radius);
+  background-color: var(--ios-gray-100);
+  color: var(--ios-gray-600);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dark .themeToggle {
+  background-color: var(--ios-gray-800);
+  color: var(--ios-gray-300);
+}
+
+.themeToggle:hover {
+  background-color: var(--ios-gray-200);
+  transform: scale(1.05);
+}
+
+.dark .themeToggle:hover {
+  background-color: var(--ios-gray-700);
+}
+
+.themeToggle:active {
+  transform: scale(0.95);
+}
+
+.themeIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .leftSection {
+    gap: 0.5rem;
+  }
+  
+  .rightSection {
+    gap: 0.5rem;
+  }
+  
+  .titleContainer {
+    max-width: 12rem;
+  }
+  
+  .logoText {
+    display: none;
+  }
+  
+  .statusText {
+    display: none;
+  }
+  
+  .usersCount {
+    display: none;
+  }
+}

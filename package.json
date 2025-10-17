@@ -1,15 +1,35 @@
 {
-  "name": "hedgedoc",
+  "name": "hedgedoc-collaborative",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start"
+    "dev": "concurrently \"npm run socket\" \"next dev\"",
+    "dev:next": "next dev",
+    "dev:socket": "node server.js",
+    "socket": "node server.js",
+    "build": "next build",
+    "start": "concurrently \"npm run socket\" \"next start\"",
+    "start:next": "next start",
+    "db:migrate": "node scripts/migrate.js"
   },
   "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.5"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^14.0.0",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
+    "pg": "^8.11.3",
+    "react-markdown": "^9.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "framer-motion": "^10.16.16",
+    "lucide-react": "^0.294.0",
+    "uuid": "^9.0.1",
+    "debounce": "^2.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.10.9",
+    "@types/uuid": "^9.0.7",
+    "concurrently": "^8.2.2"
   }
 }
