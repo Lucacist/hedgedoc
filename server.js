@@ -198,7 +198,7 @@ io.on('connection', (socket) => {
 });
 
 // Démarrage du serveur
-const PORT = process.env.SOCKET_PORT || 3001;
+const PORT = process.env.PORT || process.env.SOCKET_PORT || 3001;
 httpServer.listen(PORT, () => {
   console.log(`🚀 Socket.io server running on port ${PORT}`);
   console.log(`🌐 CORS enabled for: ${process.env.NODE_ENV === 'production' ? process.env.NEXTAUTH_URL : 'http://localhost:3000'}`);

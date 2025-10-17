@@ -1,5 +1,5 @@
 {
-  "name": "hedgedoc-collaborative",
+  "name": "markdown-collab-editor",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "concurrently \"npm run socket\" \"next start\"",
     "start:next": "next start",
+    "start:prod": "node server.js & next start",
     "db:migrate": "node scripts/migrate.js"
   },
   "dependencies": {
