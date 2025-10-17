@@ -6,31 +6,45 @@ export function useSocket() {
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    // URL du serveur Socket.io selon l'environnement
-    const socketUrl = process.env.NODE_ENV === 'production' 
-      ? window.location.origin 
-      : 'http://localhost:3001';
-    
-    // Créer la connexion Socket.io
-    const newSocket = io(socketUrl, {
-      transports: ['websocket', 'polling']
-    });
-
-    newSocket.on('connect', () => {
-      console.log('Connected to Socket.io server');
-      setIsConnected(true);
-    });
-
-    socketRef.current.on('disconnect', () => {
-      console.log('Disconnected from Socket.io server');
+    // En production sur Vercel, désactiver Socket.io (mode solo)
+    if (process.env.NODE_ENV === 'production') {
+      console.log('Production mode: Socket.io disabled (solo mode)');
       setIsConnected(false);
-    });
+      socketRef.current = null;
+      return;
+    }
 
-    return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-      }
-    };
+    // En développement, utiliser Socket.io
+    const socketUrl = 'http://localhost:3001';
+    
+    try {
+      // Créer la connexion Socket.io
+      const newSocket = io(socketUrl, {
+        transports: ['websocket', 'polling']
+      });
+
+      newSocket.on('connect', () => {
+        console.log('Connected to Socket.io server');
+        setIsConnected(true);
+      });
+
+      newSocket.on('disconnect', () => {
+        console.log('Disconnected from Socket.io server');
+        setIsConnected(false);
+      });
+
+      socketRef.current = newSocket;
+
+      return () => {
+        if (newSocket) {
+          newSocket.disconnect();
+        }
+      };
+    } catch (error) {
+      console.log('Socket.io connection failed, running in solo mode');
+      setIsConnected(false);
+      socketRef.current = null;
+    }
   }, []);
 
   return {
